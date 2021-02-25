@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -7,19 +8,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity(name = "Subject")
 @Table(name = "subject")
 public class Subject {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idsubject")
 	private int id;
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
-	
-	private Set<Teacher> teachers;
+
+	@ManyToMany(mappedBy = "subjects")
+	private Set<Teacher> teachers = new HashSet<Teacher>();;
 
 	public Subject() {
 		super();
@@ -68,7 +72,6 @@ public class Subject {
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((teachers == null) ? 0 : teachers.hashCode());
 		return result;
 	}
 
@@ -88,16 +91,11 @@ public class Subject {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (teachers == null) {
-			if (other.teachers != null)
-				return false;
-		} else if (!teachers.equals(other.teachers))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Subject [id=" + id + ", name=" + name + ", teachers=" + teachers + "]";
+		return "Subject [id=" + id + ", name=" + name + "]";
 	}
 }

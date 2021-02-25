@@ -1,58 +1,72 @@
 package dao;
 
-
 import java.util.List;
-import java.util.Set;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import entity.Subject;
 import entity.Teacher;
+import util.HibernateUtil;
 
-public class TeacherDaoImpl implements TeacherDao {
+public class TeacherDaoImpl extends HibernateUtil implements TeacherDao {
+
+	SessionFactory sessionFactory = getSessionFactory();
 
 	public void addTeacher(Teacher teacher) {
-		// TODO Auto-generated method stub
-		
+
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(teacher);
+		transaction.commit();
+		session.close();
 	}
 
 	public void updateTeacher(Teacher teacher) {
-		// TODO Auto-generated method stub
-		
+
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		session.merge(teacher);
+		transaction.commit();
+		session.close();
 	}
 
-	public void deleteTeacher(int id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteTeacher(Teacher teacher) {
+
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		session.delete(teacher);
+		transaction.commit();
+		session.close();
 	}
 
 	public Teacher getTeacherById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		Teacher teacher = session.get(Teacher.class, id);
+		transaction.commit();
+		session.close();
+		return teacher;
 	}
 
 	public Teacher getTeacherByFullName(String lastName, String name, String surname) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		Teacher teacher = session.createQuery("from Teacher where lastName = '" + lastName + "' AND name = '" + name
+				+ "' AND surname = '" + surname + "'", Teacher.class).getSingleResult();
+		transaction.commit();
+		session.close();
+		return teacher;
 	}
 
 	public List<Teacher> getAllTeachers() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		List<Teacher> teachers = session.createQuery("from Teacher", Teacher.class).getResultList();
+		transaction.commit();
+		session.close();
+		return teachers;
 	}
-
-	public void deleteSubjectFromTeacher(int idTeacher, int idSubject) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void addSubjectToTeacher(Teacher teacher, Subject subject) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Set<Teacher> getAllTeachersBySubject(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 }

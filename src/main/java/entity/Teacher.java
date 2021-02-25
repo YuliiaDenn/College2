@@ -1,12 +1,17 @@
 package entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity(name = "Teacher")
@@ -24,7 +29,9 @@ public class Teacher {
 	@Column(name = "surname")
 	private String surname;
 
-	private Set<Subject> subjects;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "teacher_subject", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
+	private Set<Subject> subjects = new HashSet<Subject>();;
 
 	public Teacher() {
 		super();
@@ -94,7 +101,6 @@ public class Teacher {
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((subjects == null) ? 0 : subjects.hashCode());
 		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
 		return result;
 	}
@@ -120,11 +126,6 @@ public class Teacher {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (subjects == null) {
-			if (other.subjects != null)
-				return false;
-		} else if (!subjects.equals(other.subjects))
-			return false;
 		if (surname == null) {
 			if (other.surname != null)
 				return false;
@@ -135,8 +136,6 @@ public class Teacher {
 
 	@Override
 	public String toString() {
-		return "Teacher [id=" + id + ", lastName=" + lastName + ", name=" + name + ", surname=" + surname
-				+ ", subjects=" + subjects + "]";
+		return "Teacher [id=" + id + ", lastName=" + lastName + ", name=" + name + ", surname=" + surname + "]";
 	}
-
 }

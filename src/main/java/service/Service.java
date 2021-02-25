@@ -23,7 +23,8 @@ public class Service {
 	}
 
 	public void deleteTeacher(int id) {
-		teacherDao.deleteTeacher(id);
+		Teacher teacher = teacherDao.getTeacherById(id);
+		teacherDao.deleteTeacher(teacher);
 	}
 
 	public Teacher getTeacherByID(int id) {
@@ -47,7 +48,8 @@ public class Service {
 	}
 
 	public void deleteSubject(int id) {
-		subjectDao.deleteSubject(id);
+		Subject subject = subjectDao.getSubjectById(id);
+		subjectDao.deleteSubject(subject);
 	}
 
 	public Subject getSubjectByID(int id) {
@@ -61,6 +63,5 @@ public class Service {
 	public List<Subject> getAllSubjects() {
 		return subjectDao.getAllSubjects();
 	}
-
 
 }

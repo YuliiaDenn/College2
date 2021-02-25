@@ -1,58 +1,72 @@
 package dao;
 
-
 import java.util.List;
-import java.util.Set;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import entity.Subject;
-import entity.Teacher;
+import util.HibernateUtil;
 
-public class SubjectDaoImpl implements SubjectDao {
+public class SubjectDaoImpl extends HibernateUtil implements SubjectDao {
+
+	private SessionFactory sessionFactory = getSessionFactory();
 
 	public void addSubject(Subject subject) {
-		// TODO Auto-generated method stub
-		
+
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		session.save(subject);
+		transaction.commit();
+		session.close();
 	}
 
 	public void updateSubject(Subject subject) {
-		// TODO Auto-generated method stub
-		
+
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		session.merge(subject);
+		transaction.commit();
+		session.close();
 	}
 
-	public void deleteSubject(int id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteSubject(Subject subject) {
+
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		session.delete(subject);
+		transaction.commit();
+		session.close();
 	}
 
 	public Subject getSubjectById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		Subject subject = session.get(Subject.class, id);
+		transaction.commit();
+		session.close();
+		return subject;
 	}
 
 	public Subject getSubjectByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		Subject subject = session.get(Subject.class, name);
+		transaction.commit();
+		session.close();
+		return subject;
 	}
 
 	public List<Subject> getAllSubjects() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public void addTeacherToSubject(Subject subject, Teacher teacher) {
-		// TODO Auto-generated method stub
-		
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		List<Subject> subjects = session.createQuery("from Subject", Subject.class).getResultList();
+		transaction.commit();
+		session.close();
+		return subjects;
 	}
-
-	public void deleteTeacherFromSubject(int idSubject, int idTeacher) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Set<Subject> getAllSubjectsByTeacher(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 }
