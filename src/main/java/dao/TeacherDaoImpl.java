@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import entity.Subject;
 import entity.Teacher;
 import util.HibernateUtil;
 
@@ -69,4 +68,5 @@ public class TeacherDaoImpl extends HibernateUtil implements TeacherDao {
 		session.close();
 		return teachers;
 	}
+	
 }

@@ -1,9 +1,5 @@
 package main;
 
-
-import java.util.HashSet;
-import java.util.Set;
-
 import entity.Subject;
 import entity.Teacher;
 import service.Service;
@@ -16,18 +12,17 @@ public class Main {
 		Service college = new Service();
 		Teacher teacher = new Teacher();
 		Subject subject = new Subject();
-		teacher = college.getTeacherByID(1);
-		subject = college.getSubjectByID(6);
-		Set<Subject> subjects = new HashSet<Subject>();
-		subjects.add(subject);
-		teacher.setSubjects(subjects);
-		Set<Teacher> teachers = new HashSet<Teacher>();
-		teachers.add(teacher);
-		subject.setTeachers(teachers);
 
+//		college.addTeacherToSubjectAndSubjectToTeacher(12, 8);
 
-//		System.out.println(college.getAllTeachers());
-//		System.out.println(college.getAllSubjects());
+//		college.showAllSubjectsWithTeachers();
+//		college.showSubjectWithTeachersById(6);
+//		college.showSubjectWithTeachersByFullName("Maths");
+
+//		college.showTeacherWithSubjectsById(1);
+//		college.showTeacherWithSubjectsByFullName("Ivanov", "Ivan", "Ivanovych");
+//		college.showAllTeachersWithSubjects();
+
 		HibernateUtil.close();
 	}
 

@@ -3,8 +3,10 @@ package entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,8 +24,8 @@ public class Subject {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(mappedBy = "subjects")
-	private Set<Teacher> teachers = new HashSet<Teacher>();;
+	@ManyToMany(mappedBy = "subjects", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<Teacher> teachers = new HashSet<Teacher>();
 
 	public Subject() {
 		super();
@@ -96,6 +98,6 @@ public class Subject {
 
 	@Override
 	public String toString() {
-		return "Subject [id=" + id + ", name=" + name + "]";
+		return "Subject {id = " + id + ", name = " + name + "}";
 	}
 }

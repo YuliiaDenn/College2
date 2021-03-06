@@ -54,7 +54,8 @@ public class SubjectDaoImpl extends HibernateUtil implements SubjectDao {
 
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
-		Subject subject = session.get(Subject.class, name);
+		Subject subject = session.createQuery("from Subject where name = '" + name + "'", Subject.class)
+				.getSingleResult();
 		transaction.commit();
 		session.close();
 		return subject;

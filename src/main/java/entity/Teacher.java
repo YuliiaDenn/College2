@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 
 @Entity(name = "Teacher")
 @Table(name = "teacher")
+
 public class Teacher {
 
 	@Id
@@ -29,9 +31,10 @@ public class Teacher {
 	@Column(name = "surname")
 	private String surname;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "teacher_subject", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
-	private Set<Subject> subjects = new HashSet<Subject>();;
+
+	private Set<Subject> subjects = new HashSet<Subject>();
 
 	public Teacher() {
 		super();
@@ -136,6 +139,7 @@ public class Teacher {
 
 	@Override
 	public String toString() {
-		return "Teacher [id=" + id + ", lastName=" + lastName + ", name=" + name + ", surname=" + surname + "]";
+		return "Teacher {id = " + id + ", lastName = " + lastName + ", name = " + name + ", surname = " + surname + "}";
 	}
+
 }
