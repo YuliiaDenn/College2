@@ -22,6 +22,8 @@ public class Main {
 //		college.showTeacherWithSubjectsById(1);
 //		college.showTeacherWithSubjectsByFullName("Ivanov", "Ivan", "Ivanovych");
 //		college.showAllTeachersWithSubjects();
+//		college.deleteTeacher(8);
+		college.deleteSubject(6);
 
 		HibernateUtil.close();
 	}

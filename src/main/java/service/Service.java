@@ -25,7 +25,12 @@ public class Service {
 
 	public void deleteTeacher(int id) {
 		Teacher teacher = teacherDao.getTeacherById(id);
-		teacherDao.deleteTeacher(teacher);
+		if (teacher != null) {
+			teacher.getSubjects().forEach(subjects -> {
+				subjects.getTeachers().remove(teacher);
+			});
+			teacherDao.deleteTeacher(teacher);
+		}
 	}
 
 	public Teacher getTeacherByID(int id) {
@@ -78,7 +83,12 @@ public class Service {
 
 	public void deleteSubject(int id) {
 		Subject subject = subjectDao.getSubjectById(id);
-		subjectDao.deleteSubject(subject);
+		if (subject != null) {
+			subject.getTeachers().forEach(teachers -> {
+				teachers.getSubjects().remove(subject);
+			});
+			subjectDao.deleteSubject(subject);
+		}
 	}
 
 	public Subject getSubjectByID(int id) {
