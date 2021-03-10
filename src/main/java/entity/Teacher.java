@@ -3,7 +3,6 @@ package entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity(name = "Teacher")
 @Table(name = "teacher")
@@ -31,10 +33,10 @@ public class Teacher {
 	@Column(name = "surname")
 	private String surname;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "teacher_subject", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
-
-	private Set<Subject> subjects = new HashSet<Subject>();
+	@Cascade({CascadeType.SAVE_UPDATE})
+	private Set<Subject> subjects;
 
 	public Teacher() {
 		super();

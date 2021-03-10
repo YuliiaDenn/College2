@@ -26,9 +26,9 @@ public class Service {
 	public void deleteTeacher(int id) {
 		Teacher teacher = teacherDao.getTeacherById(id);
 		if (teacher != null) {
-			teacher.getSubjects().forEach(subjects -> {
-				subjects.getTeachers().remove(teacher);
-			});
+//			teacher.getSubjects().forEach(subjects -> {
+//				subjects.getTeachers().remove(teacher);
+//			});
 			teacherDao.deleteTeacher(teacher);
 		}
 	}
@@ -84,9 +84,9 @@ public class Service {
 	public void deleteSubject(int id) {
 		Subject subject = subjectDao.getSubjectById(id);
 		if (subject != null) {
-			subject.getTeachers().forEach(teachers -> {
-				teachers.getSubjects().remove(subject);
-			});
+//			subject.getTeachers().forEach(teachers -> { // що це?????
+//				teachers.getSubjects().remove(subject);
+//			});
 			subjectDao.deleteSubject(subject);
 		}
 	}

@@ -18,6 +18,7 @@ public class TeacherDaoImpl extends HibernateUtil implements TeacherDao {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		session.save(teacher);
+		session.flush();
 		transaction.commit();
 		session.close();
 	}

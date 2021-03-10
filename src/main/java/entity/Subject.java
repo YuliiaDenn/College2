@@ -3,7 +3,7 @@ package entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity(name = "Subject")
 @Table(name = "subject")
@@ -24,8 +27,9 @@ public class Subject {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(mappedBy = "subjects", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<Teacher> teachers = new HashSet<Teacher>();
+	@ManyToMany(mappedBy = "subjects", fetch = FetchType.EAGER)
+	@Cascade({CascadeType.SAVE_UPDATE})
+	private Set<Teacher> teachers;
 
 	public Subject() {
 		super();
