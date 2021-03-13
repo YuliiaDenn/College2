@@ -38,7 +38,7 @@ public class Main {
 		subjects = teacher.getSubjects(); 
 		subjects.add(subject);
 		teacher.setSubjects(subjects);
-		college.updateTeacher(teacher);     צו ןנאצ‏÷ */
+		college.updateTeacher(teacher);    - work */
 		
 /*		subject = college.getSubjectByID(27);
 		teacher = college.getTeacherByID(12);
@@ -46,15 +46,15 @@ public class Main {
 		teachers = subject.getTeachers();
 		teachers.add(teacher);
 		subject.setTeachers(teachers);
-		college.updateSubject(subject);      םו ןנאצ‏÷ */
+		college.updateSubject(subject);      - does not work */
 
 //		college.showAllSubjectsWithTeachers();
 //		college.showSubjectWithTeachersById(6);
 //		college.showSubjectWithTeachersByFullName("Maths");
 
-		college.showTeacherWithSubjectsById(1);
-		college.showTeacherWithSubjectsByFullName("Ivanov", "Ivan", "Ivanovych");
-		college.showAllTeachersWithSubjects();
+//		college.showTeacherWithSubjectsById(1);
+//		college.showTeacherWithSubjectsByFullName("Ivanov", "Ivan", "Ivanovych");
+//		college.showAllTeachersWithSubjects();
 		
 //		college.deleteTeacher(49);
 //		college.deleteSubject(25);
