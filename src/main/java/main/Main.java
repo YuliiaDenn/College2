@@ -19,37 +19,45 @@ public class Main {
 		Set<Subject> subjects = new HashSet<>();
 		Set<Teacher> teachers = new HashSet<>();
 		
-		
-//		System.out.println(college.getAllSubjects());
-//		System.out.println(college.getAllTeachers().get(3));
-//		teacher = college.getAllTeachers().get(3);
-//		teacher.setSubjects(college.getAllSubjects().stream().collect(Collectors.toSet()));
 //		college.updateTeacher(teacher);
-//		subject.setName("tuño tuño tuño");
-//		teacher.setName("tuño");
-//		teacher.setSurname("tuño");
-//		teacher.setLastName("tuño");
+//		subject.setName("tt");
+//		teacher.setName("tt");
+//		teacher.setSurname("tt");
+//		teacher.setLastName("tt");
+//		teacher.setSubjects(subjects);
 //		teachers.add(teacher);
 //		subject.setTeachers(teachers);
-//		teacher.setSubjects(subjects);
 //		subjects.add(subject);
 //		
 //		college.addSubject(subject);
-		//college.addTeacher(teacher);
+//		college.addTeacher(teacher);
 		
-		//college.deleteSubject(22);
+/*		subject = college.getSubjectByID(28);
+		teacher = college.getTeacherByID(53);
 		
-//		college.addTeacherToSubjectAndSubjectToTeacher(12, 25);  // ùî öå???????
+		subjects = teacher.getSubjects(); 
+		subjects.add(subject);
+		teacher.setSubjects(subjects);
+		college.updateTeacher(teacher);     öå ïðàöþº */
+		
+/*		subject = college.getSubjectByID(27);
+		teacher = college.getTeacherByID(12);
+		
+		teachers = subject.getTeachers();
+		teachers.add(teacher);
+		subject.setTeachers(teachers);
+		college.updateSubject(subject);      íå ïðàöþº */
 
 //		college.showAllSubjectsWithTeachers();
 //		college.showSubjectWithTeachersById(6);
 //		college.showSubjectWithTeachersByFullName("Maths");
 
-//		college.showTeacherWithSubjectsById(1);
-//		college.showTeacherWithSubjectsByFullName("Ivanov", "Ivan", "Ivanovych");
-//		college.showAllTeachersWithSubjects();
-		college.deleteTeacher(16);
-//		college.deleteSubject(6);
+		college.showTeacherWithSubjectsById(1);
+		college.showTeacherWithSubjectsByFullName("Ivanov", "Ivan", "Ivanovych");
+		college.showAllTeachersWithSubjects();
+		
+//		college.deleteTeacher(49);
+//		college.deleteSubject(25);
 
 		HibernateUtil.close();
 	}

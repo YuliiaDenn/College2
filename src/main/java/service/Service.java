@@ -1,7 +1,6 @@
 package service;
 
 import java.util.List;
-import java.util.Set;
 
 import dao.SubjectDao;
 import dao.SubjectDaoImpl;
@@ -20,15 +19,14 @@ public class Service {
 	}
 
 	public void updateTeacher(Teacher teacher) {
-		teacherDao.updateTeacher(teacher);
+		if (teacher != null) {
+			teacherDao.updateTeacher(teacher);
+		}
 	}
 
 	public void deleteTeacher(int id) {
 		Teacher teacher = teacherDao.getTeacherById(id);
 		if (teacher != null) {
-//			teacher.getSubjects().forEach(subjects -> {
-//				subjects.getTeachers().remove(teacher);
-//			});
 			teacherDao.deleteTeacher(teacher);
 		}
 	}
@@ -78,15 +76,14 @@ public class Service {
 	}
 
 	public void updateSubject(Subject subject) {
-		subjectDao.updateSubject(subject);
+		if (subject != null) {
+			subjectDao.updateSubject(subject);
+		}
 	}
 
 	public void deleteSubject(int id) {
 		Subject subject = subjectDao.getSubjectById(id);
 		if (subject != null) {
-//			subject.getTeachers().forEach(teachers -> { // що це?????
-//				teachers.getSubjects().remove(subject);
-//			});
 			subjectDao.deleteSubject(subject);
 		}
 	}
@@ -127,17 +124,6 @@ public class Service {
 		subject.getTeachers().forEach(System.out::println);
 
 		System.out.println();
-	}
-
-	public void addTeacherToSubjectAndSubjectToTeacher(int teacherId, int subjectId) {
-		Teacher teacher = new Teacher();
-		Subject subject = new Subject();
-		subject = subjectDao.getSubjectById(subjectId);
-		teacher = teacherDao.getTeacherById(teacherId);
-		Set<Subject> subjects = teacher.getSubjects();
-		subjects.add(subject);
-		teacher.setSubjects(subjects);
-		teacherDao.updateTeacher(teacher);
 	}
 
 }

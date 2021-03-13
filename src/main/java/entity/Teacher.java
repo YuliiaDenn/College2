@@ -1,6 +1,5 @@
 package entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -35,7 +34,7 @@ public class Teacher {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "teacher_subject", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
-	@Cascade({CascadeType.SAVE_UPDATE})
+	@Cascade({ CascadeType.SAVE_UPDATE })
 	private Set<Subject> subjects;
 
 	public Teacher() {

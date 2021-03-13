@@ -69,5 +69,5 @@ public class TeacherDaoImpl extends HibernateUtil implements TeacherDao {
 		session.close();
 		return teachers;
 	}
-	
+
 }

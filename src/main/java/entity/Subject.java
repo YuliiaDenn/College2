@@ -1,8 +1,6 @@
 package entity;
 
-import java.util.HashSet;
 import java.util.Set;
-
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +26,7 @@ public class Subject {
 	private String name;
 
 	@ManyToMany(mappedBy = "subjects", fetch = FetchType.EAGER)
-	@Cascade({CascadeType.SAVE_UPDATE})
+	@Cascade({ CascadeType.SAVE_UPDATE })
 	private Set<Teacher> teachers;
 
 	public Subject() {
